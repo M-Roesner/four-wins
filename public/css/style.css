@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'Bangers-Regular';
+    src: local('../font/Bangers-Regular.ttf'), url('../font/Bangers-Regular.ttf') format('truetype');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Bangers-Regular';
+    font-size: 30px;
+    
+    /* Variables */
+    --color-button: black;
+
+    --color-main: black;
+
+    --size-table-td: 90px;
+    --size-vs_icon: 90px;
+    --design-button: solid black 5px;
+}
+
+body{ 
+    color: var(--color-main);
+}
+
+ /* Gridsystem */
+    /* Flex - CENTER */
+        .player_red, .player_vs, .player_blue, .grid_playground, .display_win{
+            display: flex; 
+            justify-content: center;
+            align-items: center; 
+        }
+
+    .grid_box {
+        background-image: url(../img/Background.jpg);
+        background-size: 100%;
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: auto 40% auto;
+        grid-template-rows: 15% 75% 10%;
+        grid-template-areas: 
+            "left versus right"
+            "left playground right"
+            "left button right"
+    }
+
+        .grid_left {
+            grid-area: left;
+            background-image: url(../img/MitschRed.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .grid_right {
+            grid-area: right;
+            background-image: url(../img/KastBlue.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .grid_versus{
+            grid-area: versus;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+            .player_red, .player_vs, .player_blue{
+                /* Flex - CENTER */
+                min-width: 200px;
+            }
+            .player_vs{
+                background-image: url(../img/VS.png);
+                background-size: 75% 75%;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .grid_versus .active{
+             background-image: url(../img/poow.png);
+             background-size: 100% 120%;
+             background-repeat: no-repeat;
+             background-position: center;
+            }
+            .vs_icon{
+                width: var(--size-vs_icon);
+            }
+
+        .grid_playground {
+            /* Flex - CENTER */
+            position: relative;
+            grid-area: playground;
+        }
+            .display_win{
+                /* Flex - CENTER */
+                position: absolute;
+                top: 0;
+                left: 0;                
+                width: 90%;
+                height: 80%;
+            }
+                .win_icon{
+                    opacity: 0.7;
+                }
+
+        .grid_button {
+            grid-area: button;
+            font-family: 'Bangers-Regular';
+            display: flex;
+            justify-content: center;
+        }
+            .reset{
+                border: var(--design-button);
+                padding: 10px;
+                margin: auto;
+                background-color: #ff1d24;
+                cursor: pointer;
+            }
+                .reset:hover{
+                    background-color: #ff810e;
+                }
+
+
+/* Table - playerfield */
+    table{
+        background-color: #d1ccc0;
+        border-spacing: 10px;
+        border: var(--design-button);
+    }
+        .btn_imput{
+            width: 100%;
+            height: inherit;
+            background-color: #84817a;
+            border: var(--design-button);
+            cursor: pointer;
+        }
+            .btn_imput:hover{
+                background-color: #00c2d2;
+            }
+        th{
+            height: 50px;
+        }
+        td{
+            width: var(--size-table-td);
+            height: var(--size-table-td);
+            border: none;
+        }
+
+
+/* Token */
+    .token_generals{
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .token_player0{
+        background-image: url(../img/token.png);
+        
+    }
+    .token_player1{
+        background-image: url(../img/Red.png);
+    }
+    .token_player2{
+        background-image: url(../img/Blue.png);
+    }
