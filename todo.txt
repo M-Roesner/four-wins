@@ -1,0 +1,20 @@
+# FOUR WINS
+
+ToDo v1.0:
+
+- media queries für mobile version anpassen
+- bugfixing (browser refresh)
+- icon (favicon) Startseite
+- sounds
+- footer / created by ... / impressum/quellen
+
+ToDo v1.5.0:
+
+- Menü / Spieler auswahl
+- char: slides / animations
+- coin animations
+
+
+ToDo v2.0:
+
+- A.I (Dillinger)
