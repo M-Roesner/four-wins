@@ -3,7 +3,7 @@
 ToDo v1.0:
 
 - media queries für mobile version anpassen
-- bugfixing (browser refresh)
+-x bugfixing (browser refresh)
 - icon (favicon) Startseite
 - sounds
 - footer / created by ... / impressum/quellen

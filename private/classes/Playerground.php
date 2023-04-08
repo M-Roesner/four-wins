@@ -38,6 +38,8 @@
             return $this->board;
         }
 
+        // Output an Array from board
+        // return: String
         public function toString(){
             $board = $this->getBoard();
             $result = "<br>";
@@ -61,44 +63,57 @@
             $_SESSION['board'] = $board; // optional for session
         }
 
-        // tries to set the coin in the playerfield from active player.
-        // If does'n work nothing will happen.
-        // return: $activePlayer
-        public function makeMove($column, $player){
-            if ($this->setCoin($column, $player)){
-                return $this->switchPlayer($player);
-            }
-            return $player;
+        // tries to set the coin in the playerfield from active player,
+        // if does'n work nothing will happen.
+        // return: newActivePlayer
+        public function makeMove($column, $player, $startedPlayer){
+            $this->setCoin($column, $player, $startedPlayer);
+            return $switchedPlayer = $this->switchPlayer($player);
         }
 
         // set the coin in playerfield
         // return: true, if it could set.
-        public function setCoin($column, $player) {
-            $column -= 1;
-            for ($row = $this->getHeight()-1; $row >= 0; $row--) {
-                if ($this->board[$row][$column] == 0) {
-                    $this->board[$row][$column] = $player;
-                    $_SESSION['board'] = $this->board; // optional for session
-                    return true;
+        public function setCoin($column, $player, $startedPlayer) {
+            if ($this->isValideMove($player, $startedPlayer)) {
+                for ($row = $this->getHeight()-1; $row >= 0; $row--) {
+                    if ($this->board[$row][$column] == 0) {
+                        $this->board[$row][$column] = $player;
+                        $_SESSION['board'] = $this->board; // optional for session
+                        return true;
+                    }
                 }
             }
             return false;
         }
 
-        // gives the player each cell from playerfield
+        // checks validity from palyer to do a move
+        // return true
+        private function isValideMove($player, $startedPlayer){
+            $countActivePlayer = 0;
+            $countEnemyPlayer = 0;
+            for ($col=0; $col < $this->getWidth(); $col++) { 
+                for ($row=0; $row < $this->getHeight(); $row++) { 
+                    $cell = $this->board[$row][$col];
+                    if ($cell != 0) {
+                        ($cell == $player) ? $countActivePlayer++ : $countEnemyPlayer++;
+                    }
+                }
+            }
+            return (($player == $startedPlayer && $countActivePlayer == $countEnemyPlayer)
+                || ($player != $startedPlayer && $countActivePlayer + 1 == $countEnemyPlayer))
+                ? true : false;
+        }
+
+        // gives the player of cell from playerfield
         // return: player (1 or 2), else default (0)
         public function getCoin($row, $column) {
             return $this->board[$row][$column];
         }
         
-        // switch the player
-        // return: $activePlayer
+        // switches the player
+        // return: newActivePlayer
         public function switchPlayer($player){
-            if ($player == 1) {
-                return 2;
-            } else {
-                return 1;
-            }
+            return ($player == 1) ? 2 : 1;
         }
 
         // checks if active player has won.

@@ -10,15 +10,23 @@ if (isset($_GET['reset'])) {
 }
 
 $pf = new Playground(7,6);
-$activePlayer = rand(1,2);
+$startedPlayer = 0; // player who begun
+$activePlayer = 0;
 $oldPlayer = 0; // Übergabe über GET-Methode
 $column; // Übergabe über GET-Methode
 
-if (isset($_GET['btn_col']) && isset($_GET['player']) ) {
-    $column = $_GET['btn_col'];
-    $column = substr($column,4,strlen($column)); // remove 'Reihe ' from button value
-    $oldPlayer = $_GET['player'];
-
-    $activePlayer = $pf->makeMove($column, $oldPlayer);
+// rolls who begins the match, else sets params and makeMove
+if (!isset($_GET['startedPlayer']) ) {
+    $startedPlayer = rand(1,2);
+    $activePlayer = $startedPlayer;
+} else {
+    $startedPlayer = $_GET['startedPlayer'];
+    if (isset($_GET['btn_col']) && isset($_GET['player'])) {
+        $column = $_GET['btn_col'];
+        $column = substr($column,4,strlen($column)) - 1; // remove 'Reihe ' from button value
+        $oldPlayer = $_GET['player'];
+    
+        $activePlayer = $pf->makeMove($column, $oldPlayer, $startedPlayer);
+    }
 }
 ?>
