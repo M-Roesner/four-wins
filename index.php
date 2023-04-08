@@ -29,10 +29,6 @@
                 <?php
                     if($pf->hasWon($oldPlayer) && $oldPlayer != 0){
                 ?>
-
-                    <input type="hidden" name="winner" value="<?= $oldPlayer ?>">
-                    <input type="hidden" name="player" value="1">
-
                     <div class="display_win">
                         <a href="index.php?player=<?= $oldPlayer ?>&reset=true">
                             <img src="<?= ($oldPlayer == 1) ? "./public/img/PlayerOneWins.png" : "./public/img/PlayerTwoWins.png" ?>" alt="Spieler gewinnt" class="win_icon">
@@ -42,6 +38,7 @@
                     } else {
                 ?>
                     <input type="hidden" name="player" value="<?= $activePlayer ?>">
+                    <input type="hidden" name="startedPlayer" value="<?= $startedPlayer ?>">
                 <?php
                     }
                     // Erstellt eine HTML-Tabelle mit der Klasse
@@ -73,7 +70,6 @@
 
         <div class="grid_button">
             <form action="index.php" method="get">
-                <input type="hidden" name="player" value="1">
                 <input type="hidden" name="reset" value="true">
                 <input class="reset" type="submit" value="New Party!">
             </form>

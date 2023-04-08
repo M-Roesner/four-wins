@@ -1,20 +1,25 @@
-# FOUR WINS
+# FOUR WINS - Roadmap:
 
 ToDo v1.0:
 
 - media queries für mobile version anpassen
-- bugfixing (browser refresh)
+-x bugfixing (browser refresh)
 - icon (favicon) Startseite
 - sounds
 - footer / created by ... / impressum/quellen
 
-ToDo v1.5.0:
+ToDo v2.0.0:
+
+- Netwerkfähig / multiplayer
 
 - Menü / Spieler auswahl
 - char: slides / animations
 - coin animations
+- char-ability
+-- save begin
+-- feld blocken, statt zug
+-- coint destroy, statt zug (Mitsch)
 
-
-ToDo v2.0:
+ToDo v3.0:
 
 - A.I (Dillinger)
