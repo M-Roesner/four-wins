@@ -34,7 +34,7 @@
                     if($pf->hasWon($oldPlayer) && $oldPlayer != 0){
                 ?>
                     <div class="playground_display_win">
-                        <a href="index.php?player=<?= $oldPlayer ?>&reset=true">
+                        <a href="index.php?player=<?= $oldPlayer ?>&reset=true" class="a_win_icon">
                             <img src="<?= ($oldPlayer == 1) ? "./public/img/PlayerOneWins.png" : "./public/img/PlayerTwoWins.png" ?>" alt="Spieler gewinnt" class="win_icon">
                         </a>
                     </div>

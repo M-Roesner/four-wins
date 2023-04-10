@@ -23,6 +23,7 @@
         --img-token_player0: url(../img/token.png);
         --img-token_player1: url(../img/tokenRed.png);
         --img-token_player2: url(../img/tokenBlue.png);
+        --img-background: url(../img/Background.jpg);
         
         /* size */
         --size-border-standard: 5px;
@@ -106,9 +107,10 @@ body{
 
 /* Gridsystem */
 .grid_box {    
-    background-image: url(../img/Background.jpg);
+    background-image: var(--img-background);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     height: 100vh;
     --sizeWidthOfPlayfield: calc( (var(--size-table-td) * 7 ) + (var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 ) - 150px);
     display: grid;
@@ -187,27 +189,23 @@ body{
                 width: var(--size-vs_icon);
             }
 
-    /* Flex - CENTER */
-        .grid_playground,
-        .playground_display_win{
-            display: flex; 
-            justify-content: center;
-            align-items: center; 
-        }
     .grid_playground {
         grid-area: playground;
+        display: flex; 
+        justify-content: center;
+        align-items: center; 
         position: relative;
     }
         .playground_display_win{
-            position: absolute;            
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
         }
-        .win_icon{
-            opacity: 0.7;
-            /* width: inherit; */
-        }
+            .a_win_icon{
+                position: absolute; 
+            }
+                .win_icon{
+                    opacity: 0.7;
+                    width: 100%;
+                }
 
     .grid_reset_button {
         grid-area: button;
@@ -273,7 +271,7 @@ body{
             }
 
 @media only screen and (orientation: portrait){
-    .grid_box {
+    .grid_box {        
         grid-template-columns: 100%;
         grid-template-areas: 
             "versus"
