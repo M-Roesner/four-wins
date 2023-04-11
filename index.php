@@ -74,7 +74,6 @@
                         }
                     echo "</table>";
                 ?>
-                
             </form>
         </div>
         
@@ -86,12 +85,17 @@
         </div>
 
         <div class="grid_footer">
-            <p>createy by</p> 
-            <a href="https://github.com/S-Hepting" target="_blank"> S. Hepting </a>
+            <?php
+                $randCreatorFirst = rand(0,1);
+                $sHepting = "<a href='https://github.com/S-Hepting' target='_blank'> S. Hepting </a>";
+                $mRoesner = "<a href='https://markus-roesner.dev' target='_blank'> M. Rösner </a>";
+            ?>
+            <p>createy by</p>
+            <?= ($randCreatorFirst) ? $sHepting : $mRoesner ?>
             <p>and</p>
-            <a href="https://github.com/M-Roesner" target="_blank"> M. Rösner </a>
+            <?= ($randCreatorFirst) ? $mRoesner : $sHepting?>
             <p>, used</p>
-            <a href="index.php" target="_blank" class="impressum"> sources</a>
+            <a href="" target="_blank" class="impressum"> sources</a>
             <p>!</p>              
         </div>
     </div>

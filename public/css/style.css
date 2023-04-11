@@ -23,8 +23,12 @@
         --img-token_player0: url(../img/token.png);
         --img-token_player1: url(../img/tokenRed.png);
         --img-token_player2: url(../img/tokenBlue.png);
-        --img-background: url(../img/Background.jpg);
+
+        --img-char-left: url(../img/MitschRed.png);
+        --img-char-right: url(../img/KastBlue.png);
         
+        --img-background: url(../img/Background.jpg);
+
         /* size */
         --size-border-standard: 5px;
         --size-padding-standart_vertical: 5px;
@@ -33,11 +37,14 @@
         --size-table-spacing: 5px;
         --size-vs_icon: 80px;
         --size-vs_icon_mobile: 60px;
+        --size-vs_icon_mobile_small: 40px;
         
         --size-font_main: 30px;
         --size-font_main_mobile: 15px;
+        --size-font_main_mobile_small: 10px;
         --size-font_footer: 20px;
         --size-font_footer_mobile: 10px;
+        --size-font_footer_mobile_small: 8px;
 
         /* style */
         --design-btn-border: solid black var(--size-border-standard);
@@ -60,6 +67,20 @@
         }
         table{background-color: brown}
     }
+    @media only screen and (max-width: 350px){
+        *{
+            --size-font_main: var(--size-font_main_mobile_small);
+            --size-font_footer: var(--size-font_footer_mobile_small);
+            --size-vs_icon: var(--size-vs_icon_mobile_small);
+        }
+    }
+    @media only screen and (max-height: 350px){
+        *{
+            --size-font_main: var(--size-font_main_mobile_small);
+            --size-font_footer: var(--size-font_footer_mobile_small);
+            --size-vs_icon: var(--size-vs_icon_mobile_small);
+        }   
+    }
 
 /* calculation for table_td size */
     *{
@@ -72,7 +93,7 @@
         --calc-screen-width-rest: calc(100vw - ((var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 )));
     }
     
-    /* set table_td size from calc */
+/* set table_td size from calc */
     @media only screen and (orientation: landscape){
         *{        
             --size-table-td: calc(var(--calc-screen-hight-rest) / 8 );
@@ -130,7 +151,7 @@ body{
     }
     .grid_left {
         grid-area: left;
-        background-image: url(../img/MitschRed.png);
+        background-image: var(--img-char-left);
         background-position: right;
     }
         @keyframes mymoveFromLeft {
@@ -143,7 +164,7 @@ body{
 
     .grid_right {
         grid-area: right;
-        background-image: url(../img/KastBlue.png);
+        background-image: var(--img-char-right);
         background-position: left;
     }
         @keyframes mymoveFromRight {
@@ -182,7 +203,7 @@ body{
         } 
             .icon_poow{
                 position: absolute;
-                width: calc(var(--size-vs_icon)*2);
+                width: calc(var(--size-vs_icon)*2.5);
             }
             .versus_icons{
                 position: absolute;
@@ -215,7 +236,7 @@ body{
             border: var(--design-btn-border);
             padding: var(--size-padding-standart_vertical) 10px;
             margin: auto;
-            margin-bottom: 0.5%;     
+            margin-bottom: 10px;     
             background-color: var(--color-red);
             cursor: pointer;
         }
@@ -286,10 +307,10 @@ body{
         display: none;
     }
     .grid_footer{
-        width: 100vw;
+        width: 100%;
         padding: var(--size-padding-standart_vertical) 0;
     }
     .grid_footer a{            
-        letter-spacing: 1.5px;
+        letter-spacing: 0.25em;
     }
 }

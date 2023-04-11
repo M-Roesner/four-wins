@@ -2,7 +2,7 @@
 
 ToDo v1.0:
 
-- media queries für mobile version anpassen
+-x media queries für mobile version anpassen !! noch nicht Optimal bei bestimmten Auflösungen
 -x bugfixing (browser refresh)
 - icon (favicon) Startseite
 - sounds
@@ -13,7 +13,7 @@ ToDo v2.0.0:
 - Netwerkfähig / multiplayer
 
 - Menü / Spieler auswahl
-- char: slides / animations
+-x char: slides / animations
 - coin animations
 - char-ability
 -- save begin
