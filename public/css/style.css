@@ -1,5 +1,5 @@
 /* import fonts */
-@font-face {
+    @font-face {
         font-family: 'Bangers-Regular';
         src: local('../font/Bangers-Regular.ttf'), url('../font/Bangers-Regular.ttf') format('truetype');
     }
@@ -10,14 +10,14 @@
         --color-font-main: black;
 
         --color-table: #d1ccc0;
-        --color-table_btn: #84817a;
-        --color-table_btn_hover: #00c2d2;
+        --color-table-btn: #84817a;
+        --color-table-btn-hover: #00c2d2;
         
         --color-red: #ff1d24;
         --color-orange: #ff810e;
         --color-blue: #0031d3;
 
-        --color_footer: #00c1d294;
+        --color-footer: #00c1d294;
 
         /* image */
         --img-token_player0: url(../img/token.png);
@@ -31,63 +31,64 @@
 
         /* size */
         --size-border-standard: 5px;
-        --size-padding-standart_vertical: 5px;
+        --size-padding-standart-vertical: 5px;
 
         --size-table-td: 50px;
         --size-table-spacing: 5px;
-        --size-vs_icon: 80px;
-        --size-vs_icon_mobile: 60px;
-        --size-vs_icon_mobile_small: 40px;
+        --size-vs-icon: 80px;
+        --size-vs-icon-mobile: 60px;
+        --size-vs-icon-mobile-small: 40px;
         
-        --size-font_main: 30px;
-        --size-font_main_mobile: 15px;
-        --size-font_main_mobile_small: 10px;
-        --size-font_footer: 20px;
-        --size-font_footer_mobile: 10px;
-        --size-font_footer_mobile_small: 8px;
+        --size-font-main: 30px;
+        --size-font-main-mobile: 15px;
+        --size-font-main-mobile-small: 10px;
+        --size-font-footer: 20px;
+        --size-font-footer-mobile: 10px;
+        --size-font-footer-mobile-small: 8px;
 
         /* style */
+        --font-main: 'Bangers-Regular';
         --design-btn-border: solid black var(--size-border-standard);
     }
 
-/* set fonts and vs_icon to mobile version */
+/* set fonts and vs-icon to mobile version */
     @media only screen and (max-width: 600px){
         *{
-            --size-font_main: var(--size-font_main_mobile);
-            --size-font_footer: var(--size-font_footer_mobile);
-            --size-vs_icon: var(--size-vs_icon_mobile);
+            --size-font-main: var(--size-font-main-mobile);
+            --size-font-footer: var(--size-font-footer-mobile);
+            --size-vs-icon: var(--size-vs-icon-mobile);
         }
         table{background-color: gray}
     }
     @media only screen and (max-height: 600px){
         *{
-            --size-font_main: var(--size-font_main_mobile);
-            --size-font_footer: var(--size-font_footer_mobile);
-            --size-vs_icon: var(--size-vs_icon_mobile);
+            --size-font-main: var(--size-font-main-mobile);
+            --size-font-footer: var(--size-font-footer-mobile);
+            --size-vs-icon: var(--size-vs-icon-mobile);
         }
         table{background-color: brown}
     }
     @media only screen and (max-width: 350px){
         *{
-            --size-font_main: var(--size-font_main_mobile_small);
-            --size-font_footer: var(--size-font_footer_mobile_small);
-            --size-vs_icon: var(--size-vs_icon_mobile_small);
+            --size-font-main: var(--size-font-main-mobile-small);
+            --size-font-footer: var(--size-font-footer-mobile-small);
+            --size-vs-icon: var(--size-vs-icon-mobile-small);
         }
     }
     @media only screen and (max-height: 350px){
         *{
-            --size-font_main: var(--size-font_main_mobile_small);
-            --size-font_footer: var(--size-font_footer_mobile_small);
-            --size-vs_icon: var(--size-vs_icon_mobile_small);
+            --size-font-main: var(--size-font-main-mobile-small);
+            --size-font-footer: var(--size-font-footer-mobile-small);
+            --size-vs-icon: var(--size-vs-icon-mobile-small);
         }   
     }
 
 /* calculation for table_td size */
     *{
-        --calc-versus-hight: calc(var(--size-vs_icon) * 1.5);
+        --calc-versus-hight: calc(var(--size-vs-icon) * 1.5);
         --calc-table-space: calc(( var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 ));
-        --calc-reset-hight: calc(var(--size-font_main) + (var(--size-padding-standart_vertical) * 2) + (var(--size-border-standard) * 2));
-        --calc-footer-hight: calc((var(--size-font_footer) * 1.2) + ( 5px * 2 )); 
+        --calc-reset-hight: calc(var(--size-font-main) + (var(--size-padding-standart-vertical) * 2) + (var(--size-border-standard) * 2));
+        --calc-footer-hight: calc((var(--size-font-footer) * 1.2) + ( 5px * 2 )); 
 
         --calc-screen-hight-rest: calc( 100vh - (var(--calc-versus-hight) + var(--calc-table-space) + var(--calc-reset-hight) + var(--calc-footer-hight)));
         --calc-screen-width-rest: calc(100vw - ((var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 )));
@@ -118,16 +119,18 @@
     *{    
         margin: 0;
         padding: 0;
-        font-family: 'Bangers-Regular';
-        font-size: var(--size-font_main);
+        font-family: var(--font-main);
+        font-size: var(--size-font-main);
     }
 
 body{ 
-    color: var(--color-font-main);
+    color: var(--color-font-main); 
+    /* overflow-x: hidden; */
 }
 
 /* Gridsystem */
-.grid_box {    
+.grid_box {
+    overflow-x: hidden;
     background-image: var(--img-background);
     background-repeat: no-repeat;
     background-size: cover;
@@ -141,7 +144,7 @@ body{
             "leerLinks versus versus versus leerRechts"
             "left left playground right right"
             "left left button right right"
-            "footer footer footer footer footer"    
+            "footer footer footer footer footer"
     }
     
     .grid_site_generals{
@@ -154,12 +157,13 @@ body{
         background-image: var(--img-char-left);
         background-position: right;
     }
-        @keyframes mymoveFromLeft {
-            from {left: -300px;}
-            to {left: 0px;}
+        @keyframes playerMoveFromLeft {
+            0% {left: -300px; opacity: 0%;}
+            70% {opacity: 100%;}
+            100% {left: 0px; opacity: 100%;}
         }
         .grid_left_initial{
-            animation: mymoveFromLeft 3s 1;
+            animation: playerMoveFromLeft 3s 1;
         }
 
     .grid_right {
@@ -167,12 +171,13 @@ body{
         background-image: var(--img-char-right);
         background-position: left;
     }
-        @keyframes mymoveFromRight {
-            from {right: -300px;}
-            to {right: 0px;}
+        @keyframes playerMoveFromRight {
+            0% {right: -300px; opacity: 0%;}
+            70% {opacity: 100%;}
+            100% {right: 0px; opacity: 100%;}
         }
         .grid_right_initial{
-            animation: mymoveFromRight 3s 1;
+            animation: playerMoveFromRight 3s 1;
             /* animation-fill-mode: forwards; */
         }
 
@@ -203,11 +208,11 @@ body{
         } 
             .icon_poow{
                 position: absolute;
-                width: calc(var(--size-vs_icon)*2.5);
+                width: calc(var(--size-vs-icon)*2.5);
             }
             .versus_icons{
                 position: absolute;
-                width: var(--size-vs_icon);
+                width: var(--size-vs-icon);
             }
 
     .grid_playground {
@@ -230,15 +235,17 @@ body{
 
     .grid_reset_button {
         grid-area: button;
-        text-align: center;                
+        text-align: center;
+        z-index: 1;
     }
         .btn_reset{
             border: var(--design-btn-border);
-            padding: var(--size-padding-standart_vertical) 10px;
+            padding: var(--size-padding-standart-vertical) 10px;
             margin: auto;
-            margin-bottom: 10px;     
+            margin-bottom: 10px;
             background-color: var(--color-red);
             cursor: pointer;
+            box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.677);
         }
             .btn_reset:hover{
                 background-color: var(--color-orange);
@@ -247,14 +254,15 @@ body{
     .grid_footer{            
         grid-area: footer;
         margin: 0 auto;
-        padding: var(--size-padding-standart_vertical) 10px;
-        background-color: var(--color_footer);
-        font-size: var(--size-font_footer); 
+        padding: var(--size-padding-standart-vertical) 10px;
+        background-color: var(--color-footer);
+        font-size: var(--size-font-footer); 
         text-align: center;
+        z-index: 2;
     }
     .grid_footer p, .grid_footer a{
             font-size: inherit;
-            padding: var(--size-padding-standart_vertical) 5px;
+            padding: var(--size-padding-standart-vertical) 5px;
             display: inline;
         }
     .grid_footer a{
@@ -272,21 +280,62 @@ body{
         /* background-color: var(--color-table); */
         border-spacing: var(--size-table-spacing);
         border: var(--design-btn-border);
+        box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.677);
     }
         th{}
             .btn_imput{
                 width: 100%;
                 padding: 1px;
-                background-color: var(--color-table_btn);
+                background-color: var(--color-table-btn);
                 border: var(--design-btn-border);
                 cursor: pointer;
             }
                 .btn_imput:hover{
-                    background-color: var(--color-table_btn_hover);
+                    background-color: var(--color-table-btn-hover);
                 }
         td{
             width: var(--size-table-td);
         }
+        .lastCoint{
+            background-image: var(--img-token_player0);
+            background-repeat: no-repeat;
+            background-size: var(--size-table-td);
+        }
+            .lastCoint img{
+                /* https://cubic-bezier.com/#.9,1.25,.89,.95 */
+                animation-timing-function: cubic-bezier(.9,1.25,.89,.95);
+                position: relative;
+                z-index: 1;
+                --_calc-heightOfSectionEachCoin: calc(var(--size-table-td) + var(--size-table-spacing));
+            }
+                tr:nth-child(2) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 2) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 0.4s 1;
+                }
+                tr:nth-child(3) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 3) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 0.6s 1;
+                }
+                tr:nth-child(4) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 4) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 0.8s 1;
+                }
+                tr:nth-child(5) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 5) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 1.0s 1;
+                }
+                tr:nth-child(6) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 6) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 1.2s 1;
+                }
+                tr:nth-child(7) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 7) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 1.4s 1;
+                }
+                @keyframes coinMoveFromTop {
+                    from {top: var(--_calc-posOfCoin);}
+                    to {top: 0px;}
+                }
             .tokens{
                 width: inherit;
             }
@@ -308,9 +357,15 @@ body{
     }
     .grid_footer{
         width: 100%;
-        padding: var(--size-padding-standart_vertical) 0;
+        margin-inline: 0;
+        padding: var(--size-padding-standart-vertical) 0;
     }
     .grid_footer a{            
         letter-spacing: 0.25em;
+    }
+}
+@media only screen and (orientation: landscape) and (max-height: 450px){
+    .grid_box {        
+        --sizeWidthOfPlayfield: calc( (var(--size-table-td) * 7 ) + (var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 ));
     }
 }
