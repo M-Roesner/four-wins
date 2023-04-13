@@ -195,7 +195,7 @@
             $width = $this->getWidth();
 
             for ($row = 0; $row < $height; $row++) {
-                for ($col = 0; $col < $width - 3; $col++) {
+                for ($col = 0; $col < $width; $col++) {
                     if ($board[$row][$col] == 0) {
                         return false;
                     }
