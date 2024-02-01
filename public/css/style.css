@@ -1,165 +1,372 @@
-@font-face {
-    font-family: 'Bangers-Regular';
-    src: local('../font/Bangers-Regular.ttf'), url('../font/Bangers-Regular.ttf') format('truetype');
-}
+/* import fonts */
+    @font-face {
+        font-family: 'Bangers-Regular';
+        src: local('../font/Bangers-Regular.ttf'), url('../font/Bangers-Regular.ttf') format('truetype');
+    }
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Bangers-Regular';
-    font-size: 30px;
+/* variables */
+    *{
+        /* color */
+        --color-font-main: black;
+
+        --color-table: #d1ccc0;
+        --color-table-btn: #84817a;
+        --color-table-btn-hover: #00c2d2;
+        
+        --color-red: #ff1d24;
+        --color-orange: #ff810e;
+        --color-blue: #0031d3;
+
+        --color-footer: #00c1d294;
+
+        /* image */
+        --img-token_player0: url(../img/token.png);
+        --img-token_player1: url(../img/tokenRed.png);
+        --img-token_player2: url(../img/tokenBlue.png);
+
+        --img-char-left: url(../img/MitschRed.png);
+        --img-char-right: url(../img/KastBlue.png);
+        
+        --img-background: url(../img/Background.jpg);
+
+        /* size */
+        --size-border-standard: 5px;
+        --size-padding-standart-vertical: 5px;
+
+        --size-table-td: 50px;
+        --size-table-spacing: 5px;
+        --size-vs-icon: 80px;
+        --size-vs-icon-mobile: 60px;
+        --size-vs-icon-mobile-small: 40px;
+        
+        --size-font-main: 30px;
+        --size-font-main-mobile: 15px;
+        --size-font-main-mobile-small: 10px;
+        --size-font-footer: 20px;
+        --size-font-footer-mobile: 10px;
+        --size-font-footer-mobile-small: 8px;
+
+        /* style */
+        --font-main: 'Bangers-Regular';
+        --design-btn-border: solid black var(--size-border-standard);
+    }
+
+/* set fonts and vs-icon to mobile version */
+    @media only screen and (max-width: 600px){
+        *{
+            --size-font-main: var(--size-font-main-mobile);
+            --size-font-footer: var(--size-font-footer-mobile);
+            --size-vs-icon: var(--size-vs-icon-mobile);
+        }
+        table{background-color: gray}
+    }
+    @media only screen and (max-height: 600px){
+        *{
+            --size-font-main: var(--size-font-main-mobile);
+            --size-font-footer: var(--size-font-footer-mobile);
+            --size-vs-icon: var(--size-vs-icon-mobile);
+        }
+        table{background-color: brown}
+    }
+    @media only screen and (max-width: 350px){
+        *{
+            --size-font-main: var(--size-font-main-mobile-small);
+            --size-font-footer: var(--size-font-footer-mobile-small);
+            --size-vs-icon: var(--size-vs-icon-mobile-small);
+        }
+    }
+    @media only screen and (max-height: 350px){
+        *{
+            --size-font-main: var(--size-font-main-mobile-small);
+            --size-font-footer: var(--size-font-footer-mobile-small);
+            --size-vs-icon: var(--size-vs-icon-mobile-small);
+        }   
+    }
+
+/* calculation for table_td size */
+    *{
+        --calc-versus-hight: calc(var(--size-vs-icon) * 1.5);
+        --calc-table-space: calc(( var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 ));
+        --calc-reset-hight: calc(var(--size-font-main) + (var(--size-padding-standart-vertical) * 2) + (var(--size-border-standard) * 2));
+        --calc-footer-hight: calc((var(--size-font-footer) * 1.2) + ( 5px * 2 )); 
+
+        --calc-screen-hight-rest: calc( 100vh - (var(--calc-versus-hight) + var(--calc-table-space) + var(--calc-reset-hight) + var(--calc-footer-hight)));
+        --calc-screen-width-rest: calc(100vw - ((var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 )));
+    }
     
-    /* Variables */
-    --color-button: black;
+/* set table_td size from calc */
+    @media only screen and (orientation: landscape){
+        *{        
+            --size-table-td: calc(var(--calc-screen-hight-rest) / 8 );
+        }
+        table{background-color: yellow}
+    }
+    @media only screen and (orientation: portrait) and (min-height: 125vw){
+        *{
+            --size-table-td: calc(var(--calc-screen-width-rest) / 7);
+        }
+        table{background-color: blue}
+    }
+    @media only screen and (orientation: portrait) and (max-height: calc(125vw - 1px)){
+        *{
+            --size-table-td: calc(var(--calc-screen-hight-rest) / 7);
+        }
+        table{background-color: green}
+    }
 
-    --color-main: black;
 
-    --size-table-td: 90px;
-    --size-vs_icon: 90px;
-    --design-button: solid black 5px;
-}
+/* generals attributes */
+    *{    
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-main);
+        font-size: var(--size-font-main);
+    }
 
 body{ 
-    color: var(--color-main);
+    color: var(--color-font-main); 
+    /* overflow-x: hidden; */
 }
 
- /* Gridsystem */
-    /* Flex - CENTER */
-        .player_red, .player_vs, .player_blue, .grid_playground, .display_win{
+/* Gridsystem */
+.grid_box {
+    overflow-x: hidden;
+    background-image: var(--img-background);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    --sizeWidthOfPlayfield: calc( (var(--size-table-td) * 7 ) + (var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 ) - 150px);
+    display: grid;
+        grid-template-columns: 1fr 1fr var(--sizeWidthOfPlayfield) 1fr 1fr;
+        grid-template-rows: var(--calc-versus-hight) 1fr var(--calc-reset-hight) var(--calc-footer-hight);
+        grid-template-areas: 
+            "leerLinks versus versus versus leerRechts"
+            "left left playground right right"
+            "left left button right right"
+            "footer footer footer footer footer"
+    }
+    
+    .grid_site_generals{
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+    .grid_left {
+        grid-area: left;
+        background-image: var(--img-char-left);
+        background-position: right;
+    }
+        @keyframes playerMoveFromLeft {
+            0% {left: -300px; opacity: 0%;}
+            70% {opacity: 100%;}
+            100% {left: 0px; opacity: 100%;}
+        }
+        .grid_left_initial{
+            animation: playerMoveFromLeft 3s 1;
+        }
+
+    .grid_right {
+        grid-area: right;
+        background-image: var(--img-char-right);
+        background-position: left;
+    }
+        @keyframes playerMoveFromRight {
+            0% {right: -300px; opacity: 0%;}
+            70% {opacity: 100%;}
+            100% {right: 0px; opacity: 100%;}
+        }
+        .grid_right_initial{
+            animation: playerMoveFromRight 3s 1;
+            /* animation-fill-mode: forwards; */
+        }
+
+    .grid_versus{
+        grid-area: versus;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: 100%;
+        grid-template-areas: 
+            "red vs blue";
+        gap: 10%;
+    }
+        .versus_generals {
             display: flex; 
             justify-content: center;
             align-items: center; 
         }
-
-    .grid_box {
-        background-image: url(../img/Background.jpg);
-        background-size: 100%;
-        width: 100vw;
-        height: 100vh;
-        display: grid;
-        grid-template-columns: auto 40% auto;
-        grid-template-rows: 15% 75% 10%;
-        grid-template-areas: 
-            "left versus right"
-            "left playground right"
-            "left button right"
-    }
-
-        .grid_left {
-            grid-area: left;
-            background-image: url(../img/MitschRed.png);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+        .player_vs{
+            grid-area: vs;
         }
-
-        .grid_right {
-            grid-area: right;
-            background-image: url(../img/KastBlue.png);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .grid_versus{
-            grid-area: versus;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-            .player_red, .player_vs, .player_blue{
-                /* Flex - CENTER */
-                min-width: 200px;
-            }
-            .player_vs{
-                background-image: url(../img/VS.png);
-                background-size: 75% 75%;
-                background-repeat: no-repeat;
-                background-position: center;
-            }
-            .grid_versus .active{
-             background-image: url(../img/poow.png);
-             background-size: 100% 120%;
-             background-repeat: no-repeat;
-             background-position: center;
-            }
-            .vs_icon{
-                width: var(--size-vs_icon);
-            }
-
-        .grid_playground {
-            /* Flex - CENTER */
+        .player_blue{
+            grid-area: red;
             position: relative;
-            grid-area: playground;
         }
-            .display_win{
-                /* Flex - CENTER */
+        .player_blue{
+            grid-area: blue;
+            position: relative;
+        } 
+            .icon_poow{
                 position: absolute;
-                top: 0;
-                left: 0;                
-                width: 90%;
-                height: 80%;
+                width: calc(var(--size-vs-icon)*2.5);
+            }
+            .versus_icons{
+                position: absolute;
+                width: var(--size-vs-icon);
+            }
+
+    .grid_playground {
+        grid-area: playground;
+        display: flex; 
+        justify-content: center;
+        align-items: center; 
+        position: relative;
+    }
+        .playground_display_win{
+            position: relative;
+            z-index: 2;
+        }
+            .a_win_icon{
+                position: absolute; 
             }
                 .win_icon{
                     opacity: 0.7;
+                    width: 100%;
                 }
 
-        .grid_button {
-            grid-area: button;
-            font-family: 'Bangers-Regular';
-            display: flex;
-            justify-content: center;
+    .grid_reset_button {
+        grid-area: button;
+        text-align: center;
+        z-index: 1;
+    }
+        .btn_reset{
+            border: var(--design-btn-border);
+            padding: var(--size-padding-standart-vertical) 10px;
+            margin: auto;
+            margin-bottom: 10px;
+            background-color: var(--color-red);
+            cursor: pointer;
+            box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.677);
         }
-            .reset{
-                border: var(--design-button);
-                padding: 10px;
-                margin: auto;
-                background-color: #ff1d24;
-                cursor: pointer;
+            .btn_reset:hover{
+                background-color: var(--color-orange);
             }
-                .reset:hover{
-                    background-color: #ff810e;
-                }
+
+    .grid_footer{            
+        grid-area: footer;
+        margin: 0 auto;
+        padding: var(--size-padding-standart-vertical) 10px;
+        background-color: var(--color-footer);
+        font-size: var(--size-font-footer); 
+        text-align: center;
+        z-index: 2;
+    }
+    .grid_footer p, .grid_footer a{
+            font-size: inherit;
+            padding: var(--size-padding-standart-vertical) 5px;
+            display: inline;
+        }
+    .grid_footer a{
+        font-size: 1.2em;
+        letter-spacing: 2px;
+        color: var(--color-red);
+    }
+        .grid_footer a:hover{
+            color: var(--color-blue);
+        }
 
 
 /* Table - playerfield */
     table{
-        background-color: #d1ccc0;
-        border-spacing: 10px;
-        border: var(--design-button);
+        /* background-color: var(--color-table); */
+        border-spacing: var(--size-table-spacing);
+        border: var(--design-btn-border);
+        box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.677);
     }
-        .btn_imput{
-            width: 100%;
-            height: inherit;
-            background-color: #84817a;
-            border: var(--design-button);
-            cursor: pointer;
-        }
-            .btn_imput:hover{
-                background-color: #00c2d2;
+        th{}
+            .btn_imput{
+                width: 100%;
+                padding: 1px;
+                background-color: var(--color-table-btn);
+                border: var(--design-btn-border);
+                cursor: pointer;
             }
-        th{
-            height: 50px;
-        }
+                .btn_imput:hover{
+                    background-color: var(--color-table-btn-hover);
+                }
         td{
             width: var(--size-table-td);
-            height: var(--size-table-td);
-            border: none;
         }
+        .lastCoint{
+            background-image: var(--img-token_player0);
+            background-repeat: no-repeat;
+            background-size: var(--size-table-td);
+        }
+            .lastCoint img{
+                /* https://cubic-bezier.com/#.9,1.25,.89,.95 */
+                animation-timing-function: cubic-bezier(.9,1.25,.89,.95);
+                position: relative;
+                z-index: 1;
+                --_calc-heightOfSectionEachCoin: calc(var(--size-table-td) + var(--size-table-spacing));
+            }
+                tr:nth-child(2) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 2) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 0.4s 1;
+                }
+                tr:nth-child(3) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 3) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 0.6s 1;
+                }
+                tr:nth-child(4) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 4) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 0.8s 1;
+                }
+                tr:nth-child(5) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 5) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 1.0s 1;
+                }
+                tr:nth-child(6) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 6) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 1.2s 1;
+                }
+                tr:nth-child(7) .lastCoint img{
+                    --_calc-posOfCoin: calc(((var(--_calc-heightOfSectionEachCoin) * 7) + var(--size-table-td)) * -1);
+                    animation: coinMoveFromTop 1.4s 1;
+                }
+                @keyframes coinMoveFromTop {
+                    from {top: var(--_calc-posOfCoin);}
+                    to {top: 0px;}
+                }
+            .tokens{
+                width: inherit;
+            }
 
-
-/* Token */
-    .token_generals{
-        background-size: contain;
-        background-repeat: no-repeat;
+@media only screen and (orientation: portrait){
+    .grid_box {        
+        grid-template-columns: 100%;
+        grid-template-areas: 
+            "versus"
+            "playground"
+            "button"
+            "footer"
     }
-    .token_player0{
-        background-image: url(../img/token.png);
-        
+    .grid_left{
+        display: none;
     }
-    .token_player1{
-        background-image: url(../img/Red.png);
+    .grid_right{
+        display: none;
     }
-    .token_player2{
-        background-image: url(../img/Blue.png);
+    .grid_footer{
+        width: 100%;
+        margin-inline: 0;
+        padding: var(--size-padding-standart-vertical) 0;
     }
+    .grid_footer a{            
+        letter-spacing: 0.25em;
+    }
+}
+@media only screen and (orientation: landscape) and (max-height: 450px){
+    .grid_box {        
+        --sizeWidthOfPlayfield: calc( (var(--size-table-td) * 7 ) + (var(--size-table-spacing) * 8 ) + ( var(--size-border-standard) * 2 ));
+    }
+}
