@@ -1,0 +1,26 @@
+# FOUR WINS - Roadmap:
+
+ToDo v1.0:
+
+-x media queries für mobile version anpassen !! noch nicht Optimal bei bestimmten Auflösungen
+-x bugfixing (browser refresh)
+- icon (favicon) Startseite
+- sounds
+- footer / created by ... / impressum/quellen
+- checkTie - funktion geschrieben, muss noch eingebaut werden
+
+ToDo v2.0.0:
+
+- Netwerkfähig / multiplayer
+
+- Menü / Spieler auswahl
+-x char: slides / animations
+- coin animations
+- char-ability
+-- save begin
+-- feld blocken, statt zug
+-- coint destroy, statt zug (Mitsch)
+
+ToDo v3.0:
+
+- A.I (Dillinger)
