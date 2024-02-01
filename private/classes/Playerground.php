@@ -6,6 +6,7 @@
         private int $height;
         private $players;
         private $board;
+        private $latestCoinCoordinates;
 
         // create a playerfield, if nothing in session, else load playerfield from session
         public function __construct(int $width, int $height){
@@ -36,6 +37,17 @@
 
         public function getBoard(){
             return $this->board;
+        }
+
+        // Sets the row and column of the last coin what has been set
+        public function setLatestCoinCoordinates($coordinates){
+            $this->latestCoinCoordinates = $coordinates;
+        }
+
+        // gets the an Array with coordinates
+        // return: array[$row; $column]
+        public function getLatestCoinCoordinates(){
+            return $this->latestCoinCoordinates;
         }
 
         // Output an Array from board
@@ -79,6 +91,11 @@
                     if ($this->board[$row][$column] == 0) {
                         $this->board[$row][$column] = $player;
                         $_SESSION['board'] = $this->board; // optional for session
+                        $coordinates = array(
+                                "row"    => $row,
+                                "col"  => $column,
+                            );
+                        $this->setLatestCoinCoordinates($coordinates);
                         return true;
                     }
                 }
@@ -168,6 +185,23 @@
                 }
             }
             return false;
+        }
+
+        // checks if all coint set from players
+        // return: true, if all cells have not '0'
+        public function checkTie(){
+            $board = $this->getBoard();
+            $height = $this->getHeight();
+            $width = $this->getWidth();
+
+            for ($row = 0; $row < $height; $row++) {
+                for ($col = 0; $col < $width; $col++) {
+                    if ($board[$row][$col] == 0) {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
         
         public function getPlayerChampion($player){
